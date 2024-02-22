@@ -18,7 +18,7 @@
     char * strval;
 }
 
-%token <strval> DOT BANG QUESTIONMARK
+%token <strval> DOT BANG QUESTIONMARK QUACK
 %token <strval> STRING
 %type  <strval> sentence snake sheep bison
 
@@ -28,14 +28,17 @@ speech: %empty
     | speech snake
     | speech bison
     | speech sheep
+    | speech duck
     ;
 
 snake: sentence DOT          { snake_say($$); };
 bison: sentence BANG         { bison_say($$); };
 sheep: sentence QUESTIONMARK { sheep_say($$); };
 
-sentence: STRING
-    | sentence STRING
+duck:  QUACK sentence BANG          { puts($2); };
+
+sentence: STRING { puts($$); }
+    | sentence STRING { $$ = strdup((string() + $1 + $2).c_str()); puts($$); }
     ;
 
 %%

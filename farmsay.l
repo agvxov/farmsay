@@ -14,6 +14,7 @@
 \?[[:space:]]*  { return QUESTIONMARK; }
 .               { yylval.strval = yytext; return STRING; }
 \n              { ; }
+QUACK           { return QUACK; }
 }
 
 %%
