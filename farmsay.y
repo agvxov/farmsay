@@ -35,10 +35,10 @@ snake: sentence DOT          { snake_say($$); };
 bison: sentence BANG         { bison_say($$); };
 sheep: sentence QUESTIONMARK { sheep_say($$); };
 
-duck:  QUACK sentence BANG          { puts($2); };
+duck:  QUACK sentence BANG          { printf("'%s'\n", $2); };
 
-sentence: STRING { puts($$); }
-    | sentence STRING { $$ = strdup((string() + $1 + $2).c_str()); puts($$); }
+sentence: STRING
+    | sentence STRING
     ;
 
 %%
