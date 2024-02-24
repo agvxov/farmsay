@@ -67,6 +67,17 @@ void sheep_say(const char * const s) {
     fputs("\033[0m", stdout);
 }
 
+void duck_say(const char * const s) {
+    const char * const DUCK =
+        " \\_0<\n"
+        "  V_  \n"
+    ;
+    fputs("\033[34m", stdout);
+    frame('X', 6, s);
+    puts(DUCK);
+    fputs("\033[0m", stdout);
+}
+
 
 signed main(int argc, char * * argv) {
     yyparse();
